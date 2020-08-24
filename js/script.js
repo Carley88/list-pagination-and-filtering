@@ -22,15 +22,32 @@ function showPage (page, list) {
   }
 }
 
+function appendPageLinks(list) {
+  const pagesRequired = Math.ceil(list.length/10);
+  const pageDiv = document.querySelector(".page")
+  const div = document.createElement("div");
+  div.className = 'pagination';
+  const ul = document.createElement('ul');
+  pageDiv.appendChild(div);
+  div.appendChild(ul);
 
+  for (let i = 0; i < pagesRequired; i++) {
+    const li = document.createElement('li');
+    const a = document.createElement('a');
+    ul.appendChild(li);
+    li.appendChild(a);
+    a.href = "#";
+    a.textContent = i + 1;
+  }
 
-/***
-   Create the `appendPageLinks function` to generate, append, and add
-   functionality to the pagination buttons.
-***/
+  ul.addEventListener("click", (event) => {
+    const page = event.target.textContent
+    showPage(page, list);
 
+  })
+}
 
-
+appendPageLinks(studentList);
 
 
 // Remember to delete the comments that came with this file, and replace them with your own code comments.
