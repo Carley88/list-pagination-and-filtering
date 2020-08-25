@@ -8,6 +8,49 @@ FSJS project 2 - List Filter and Pagination
 
 const studentList = document.querySelector(".student-list").children;
 
+
+for (let i = 0; i < studentList.length; i++) {
+    if (i > 9) {
+      studentList[i].style.display = "none";
+    }
+  }
+
+const header = document.querySelector("h2")
+const form = document.createElement("form");
+const input = document.createElement("input");
+const button = document.createElement("button");
+header.appendChild(form);
+form.appendChild(input);
+form.appendChild(button);
+
+input.placeholder = "Search Name"
+button.textContent = "Search"
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const studentNames = document.querySelectorAll("h3")
+  const searchWord = input.value;
+  input.value = '';
+
+
+
+  for (let i = 0; i < studentNames.length; i++) {
+    const studentName = studentNames[i].textContent
+    if (studentName.includes(searchWord) === true) {
+      studentList[i].style.display = "";
+      studentList[i].dataset.active = "yes"
+  } else {
+    studentList[i].style.display = "none"
+    studentList[i].dataset.active = ""
+    }
+  }
+  const paginationDiv = document.querySelector(".pagination");
+  const ul = paginationDiv.children
+  paginationDiv.removeChild(ul[0])
+  const activeStudents = document.querySelectorAll('[data-active=yes]')
+  appendPageLinks(activeStudents);
+});
+
 function showPage (page, list) {
   const increment = (page - 1) * 10;
   const indexLow = 0 + increment;
@@ -43,7 +86,6 @@ function appendPageLinks(list) {
   ul.addEventListener("click", (event) => {
     const page = event.target.textContent
     showPage(page, list);
-
   })
 }
 
