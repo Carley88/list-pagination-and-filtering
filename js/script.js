@@ -2,13 +2,6 @@ const studentList = document.querySelector(".student-list").children;
 const paginationDiv = document.createElement("div");
 paginationDiv.className = 'pagination';
 
-
-for (let i = 0; i < studentList.length; i++) {
-    if (i > 9) {
-      studentList[i].style.display = "none";
-    }
-  }
-
   function showPage (page, list) {
     const increment = (page - 1) * 10;
     const indexLow = 0 + increment;
@@ -89,6 +82,13 @@ function search() {
     }
   });
 }
+
+for (let i = 0; i < studentList.length; i++) {
+    if (i > 9) {
+      studentList[i].style.display = "none";
+    }
+  }
+
 
 appendPageLinks(studentList);
 search();
