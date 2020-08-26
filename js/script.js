@@ -1,6 +1,6 @@
 const studentList = document.querySelector(".student-list").children;
-const div = document.createElement("div");
-div.className = 'pagination';
+const paginationDiv = document.createElement("div");
+paginationDiv.className = 'pagination';
 
 
 for (let i = 0; i < studentList.length; i++) {
@@ -38,7 +38,6 @@ form.addEventListener('submit', (e) => {
     studentList[i].dataset.active = ""
     }
   }
-  const paginationDiv = document.querySelector(".pagination");
   const ul = paginationDiv.children
   paginationDiv.removeChild(ul[0])
   const activeStudents = document.querySelectorAll('[data-active=yes]')
@@ -72,8 +71,8 @@ function appendPageLinks(list) {
   const pagesRequired = Math.ceil(list.length/10);
   const pageDiv = document.querySelector(".page")
   const ul = document.createElement('ul');
-  pageDiv.appendChild(div);
-  div.appendChild(ul);
+  pageDiv.appendChild(paginationDiv);
+  paginationDiv.appendChild(ul);
 
   for (let i = 0; i < pagesRequired; i++) {
     const li = document.createElement('li');
