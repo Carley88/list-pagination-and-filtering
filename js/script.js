@@ -1,11 +1,3 @@
-/******************************************
-Treehouse Techdegree:
-FSJS project 2 - List Filter and Pagination
-******************************************/
-
-// Study guide for this project - https://drive.google.com/file/d/1OD1diUsTMdpfMDv677TfL1xO2CEkykSz/view?usp=sharing
-
-
 const studentList = document.querySelector(".student-list").children;
 const div = document.createElement("div");
 div.className = 'pagination';
@@ -99,6 +91,3 @@ function appendPageLinks(list) {
 }
 
 appendPageLinks(studentList);
-
-
-// Remember to delete the comments that came with this file, and replace them with your own code comments.
