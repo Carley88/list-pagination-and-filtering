@@ -63,14 +63,14 @@ function showPage (page, list) {
       if (i < indexLow || i > indexHigh) {
         list[i].style.display = "none";
     } else {
-      list[i].style.display = ""
+      list[i].style.display = "";
     }
   }
 }
 
 function appendPageLinks(list) {
   const pagesRequired = Math.ceil(list.length/10);
-  const pageDiv = document.querySelector(".page")
+  const pageDiv = document.querySelector(".page");
   const ul = document.createElement('ul');
   pageDiv.appendChild(paginationDiv);
   paginationDiv.appendChild(ul);
@@ -85,7 +85,7 @@ function appendPageLinks(list) {
   }
 
   ul.addEventListener("click", (event) => {
-    const page = event.target.textContent
+    const page = event.target.textContent;
     showPage(page, list);
   })
 }
