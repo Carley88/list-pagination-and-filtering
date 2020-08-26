@@ -50,8 +50,16 @@ form.addEventListener('submit', (e) => {
   const ul = paginationDiv.children
   paginationDiv.removeChild(ul[0])
   const activeStudents = document.querySelectorAll('[data-active=yes]')
-  showPage(1, activeStudents);
-  appendPageLinks(activeStudents);
+  const noResultMessage = document.createElement("h2")
+  paginationDiv.appendChild(noResultMessage)
+
+  if (activeStudents.length === 0) {
+    noResultMessage.textContent = "Search has returned 0 results, please try a different keyword.";
+  } else {
+    paginationDiv.removeChild(noResultMessage);
+    showPage(1, activeStudents);
+    appendPageLinks(activeStudents);
+  }
 });
 
 function showPage (page, list) {
