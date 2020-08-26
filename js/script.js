@@ -10,6 +10,7 @@ for (let i = 0; i < studentList.length; i++) {
   }
 
 function search() {
+  const studentNames = document.querySelectorAll("h3");
   const header = document.querySelector("h2");
   const form = document.createElement("form");
   const input = document.createElement("input");
@@ -23,27 +24,25 @@ function search() {
 
   form.addEventListener('submit', (e) => {
     e.preventDefault();
-    const studentNames = document.querySelectorAll("h3")
     const searchWord = input.value.toLowerCase();
-    return searchWord;
     input.value = '';
 
     for (let i = 0; i < studentNames.length; i++) {
-      const studentName = studentNames[i].textContent
+      const studentName = studentNames[i].textContent;
       if (studentName.includes(searchWord) === true) {
         studentList[i].style.display = "";
-        studentList[i].dataset.active = "yes"
+        studentList[i].dataset.active = "yes";
     } else {
-      studentList[i].style.display = "none"
-      studentList[i].dataset.active = ""
+      studentList[i].style.display = "none";
+      studentList[i].dataset.active = "";
       }
     }
 
-    const ul = paginationDiv.children
-    paginationDiv.removeChild(ul[0])
-    const activeStudents = document.querySelectorAll('[data-active=yes]')
-    const noResultMessage = document.createElement("h2")
-    paginationDiv.appendChild(noResultMessage)
+    const ul = paginationDiv.children;
+    paginationDiv.removeChild(ul[0]);
+    const activeStudents = document.querySelectorAll('[data-active=yes]');
+    const noResultMessage = document.createElement("h2");
+    paginationDiv.appendChild(noResultMessage);
 
     if (activeStudents.length === 0) {
       noResultMessage.textContent = "Search has returned 0 results, please try a different keyword.";
