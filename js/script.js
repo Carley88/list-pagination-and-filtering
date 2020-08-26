@@ -9,6 +9,42 @@ for (let i = 0; i < studentList.length; i++) {
     }
   }
 
+  function showPage (page, list) {
+    const increment = (page - 1) * 10;
+    const indexLow = 0 + increment;
+    const indexHigh = 9 + increment;
+
+    for (let i = 0; i < list.length; i++) {
+        if (i < indexLow || i > indexHigh) {
+          list[i].style.display = "none";
+      } else {
+        list[i].style.display = "";
+      }
+    }
+  }
+
+  function appendPageLinks(list) {
+    const pagesRequired = Math.ceil(list.length/10);
+    const pageDiv = document.querySelector(".page");
+    const ul = document.createElement('ul');
+    pageDiv.appendChild(paginationDiv);
+    paginationDiv.appendChild(ul);
+
+    for (let i = 0; i < pagesRequired; i++) {
+      const li = document.createElement('li');
+      const a = document.createElement('a');
+      ul.appendChild(li);
+      li.appendChild(a);
+      a.href = "#";
+      a.textContent = i + 1;
+    }
+
+    ul.addEventListener("click", (event) => {
+      const page = event.target.textContent;
+      showPage(page, list);
+    })
+  }
+
 function search() {
   const studentNames = document.querySelectorAll("h3");
   const header = document.querySelector("h2");
@@ -52,42 +88,6 @@ function search() {
       appendPageLinks(activeStudents);
     }
   });
-}
-
-function showPage (page, list) {
-  const increment = (page - 1) * 10;
-  const indexLow = 0 + increment;
-  const indexHigh = 9 + increment;
-
-  for (let i = 0; i < list.length; i++) {
-      if (i < indexLow || i > indexHigh) {
-        list[i].style.display = "none";
-    } else {
-      list[i].style.display = "";
-    }
-  }
-}
-
-function appendPageLinks(list) {
-  const pagesRequired = Math.ceil(list.length/10);
-  const pageDiv = document.querySelector(".page");
-  const ul = document.createElement('ul');
-  pageDiv.appendChild(paginationDiv);
-  paginationDiv.appendChild(ul);
-
-  for (let i = 0; i < pagesRequired; i++) {
-    const li = document.createElement('li');
-    const a = document.createElement('a');
-    ul.appendChild(li);
-    li.appendChild(a);
-    a.href = "#";
-    a.textContent = i + 1;
-  }
-
-  ul.addEventListener("click", (event) => {
-    const page = event.target.textContent;
-    showPage(page, list);
-  })
 }
 
 appendPageLinks(studentList);
