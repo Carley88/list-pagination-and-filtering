@@ -7,6 +7,8 @@ FSJS project 2 - List Filter and Pagination
 
 
 const studentList = document.querySelector(".student-list").children;
+const div = document.createElement("div");
+div.className = 'pagination';
 
 
 for (let i = 0; i < studentList.length; i++) {
@@ -29,7 +31,7 @@ button.textContent = "Search"
 form.addEventListener('submit', (e) => {
   e.preventDefault();
   const studentNames = document.querySelectorAll("h3")
-  const searchWord = input.value;
+  const searchWord = input.value.toLowerCase();
   input.value = '';
 
 
@@ -48,6 +50,7 @@ form.addEventListener('submit', (e) => {
   const ul = paginationDiv.children
   paginationDiv.removeChild(ul[0])
   const activeStudents = document.querySelectorAll('[data-active=yes]')
+  showPage(1, activeStudents);
   appendPageLinks(activeStudents);
 });
 
@@ -68,8 +71,6 @@ function showPage (page, list) {
 function appendPageLinks(list) {
   const pagesRequired = Math.ceil(list.length/10);
   const pageDiv = document.querySelector(".page")
-  const div = document.createElement("div");
-  div.className = 'pagination';
   const ul = document.createElement('ul');
   pageDiv.appendChild(div);
   div.appendChild(ul);
