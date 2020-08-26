@@ -9,49 +9,51 @@ for (let i = 0; i < studentList.length; i++) {
     }
   }
 
-const header = document.querySelector("h2")
-const form = document.createElement("form");
-const input = document.createElement("input");
-const button = document.createElement("button");
-header.appendChild(form);
-form.appendChild(input);
-form.appendChild(button);
+function search() {
+  const header = document.querySelector("h2");
+  const form = document.createElement("form");
+  const input = document.createElement("input");
+  const button = document.createElement("button");
+  header.appendChild(form);
+  form.appendChild(input);
+  form.appendChild(button);
 
-input.placeholder = "Search Name"
-button.textContent = "Search"
+  input.placeholder = "Search Name";
+  button.textContent = "Search";
 
-form.addEventListener('submit', (e) => {
-  e.preventDefault();
-  const studentNames = document.querySelectorAll("h3")
-  const searchWord = input.value.toLowerCase();
-  input.value = '';
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const studentNames = document.querySelectorAll("h3")
+    const searchWord = input.value.toLowerCase();
+    return searchWord;
+    input.value = '';
 
-
-
-  for (let i = 0; i < studentNames.length; i++) {
-    const studentName = studentNames[i].textContent
-    if (studentName.includes(searchWord) === true) {
-      studentList[i].style.display = "";
-      studentList[i].dataset.active = "yes"
-  } else {
-    studentList[i].style.display = "none"
-    studentList[i].dataset.active = ""
+    for (let i = 0; i < studentNames.length; i++) {
+      const studentName = studentNames[i].textContent
+      if (studentName.includes(searchWord) === true) {
+        studentList[i].style.display = "";
+        studentList[i].dataset.active = "yes"
+    } else {
+      studentList[i].style.display = "none"
+      studentList[i].dataset.active = ""
+      }
     }
-  }
-  const ul = paginationDiv.children
-  paginationDiv.removeChild(ul[0])
-  const activeStudents = document.querySelectorAll('[data-active=yes]')
-  const noResultMessage = document.createElement("h2")
-  paginationDiv.appendChild(noResultMessage)
 
-  if (activeStudents.length === 0) {
-    noResultMessage.textContent = "Search has returned 0 results, please try a different keyword.";
-  } else {
-    paginationDiv.removeChild(noResultMessage);
-    showPage(1, activeStudents);
-    appendPageLinks(activeStudents);
-  }
-});
+    const ul = paginationDiv.children
+    paginationDiv.removeChild(ul[0])
+    const activeStudents = document.querySelectorAll('[data-active=yes]')
+    const noResultMessage = document.createElement("h2")
+    paginationDiv.appendChild(noResultMessage)
+
+    if (activeStudents.length === 0) {
+      noResultMessage.textContent = "Search has returned 0 results, please try a different keyword.";
+    } else {
+      paginationDiv.removeChild(noResultMessage);
+      showPage(1, activeStudents);
+      appendPageLinks(activeStudents);
+    }
+  });
+}
 
 function showPage (page, list) {
   const increment = (page - 1) * 10;
@@ -90,3 +92,4 @@ function appendPageLinks(list) {
 }
 
 appendPageLinks(studentList);
+search();
