@@ -97,10 +97,9 @@ function search() {
   input.placeholder = "Search Name";
   button.textContent = "Search";
 
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('keyup', (e) => {
     e.preventDefault();
     const searchWord = input.value.toLowerCase();
-    input.value = '';
 
     for (let i = 0; i < studentNames.length; i++) {
       const studentName = studentNames[i].textContent;
