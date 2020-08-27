@@ -56,12 +56,20 @@ page number through the param.
       li.appendChild(a);
       a.href = "#";
       a.textContent = i + 1;
+      if (a.textContent == 1) {
+        a.className = "active"
+      }
     }
 
     ul.addEventListener("click", (event) => {
+      const pageLinks = document.getElementsByTagName("a");
+      for (let i = 0; i < pageLinks.length; i++) {
+        pageLinks[i].className = "";
+      }
       if (event.target.tagName === "A") {
         const page = event.target.textContent;
         showPage(page, list);
+        event.target.className = "active";
       }
     })
   }
