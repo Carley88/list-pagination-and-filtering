@@ -59,8 +59,10 @@ page number through the param.
     }
 
     ul.addEventListener("click", (event) => {
-      const page = event.target.textContent;
-      showPage(page, list);
+      if (event.target.tagName === "A") {
+        const page = event.target.textContent;
+        showPage(page, list);
+      }
     })
   }
 
