@@ -56,11 +56,21 @@ page number through the param.
       li.appendChild(a);
       a.href = "#";
       a.textContent = i + 1;
+      if (a.textContent == 1) {
+        a.className = "active"
+      }
     }
 
     ul.addEventListener("click", (event) => {
-      const page = event.target.textContent;
-      showPage(page, list);
+      const pageLinks = document.getElementsByTagName("a");
+      for (let i = 0; i < pageLinks.length; i++) {
+        pageLinks[i].className = "";
+      }
+      if (event.target.tagName === "A") {
+        const page = event.target.textContent;
+        showPage(page, list);
+        event.target.className = "active";
+      }
     })
   }
 
@@ -75,21 +85,21 @@ If no results are returned a message will be displayed to let the user know & no
 
 function search() {
   const studentNames = document.querySelectorAll("h3");
-  const header = document.querySelector("h2");
+  const header = document.querySelector(".page-header");
   const form = document.createElement("form");
   const input = document.createElement("input");
   const button = document.createElement("button");
   header.appendChild(form);
   form.appendChild(input);
+  form.className = "student-search"
   form.appendChild(button);
 
   input.placeholder = "Search Name";
   button.textContent = "Search";
 
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
+  form.addEventListener('keyup', (event) => {
+    event.preventDefault();
     const searchWord = input.value.toLowerCase();
-    input.value = '';
 
     for (let i = 0; i < studentNames.length; i++) {
       const studentName = studentNames[i].textContent;
