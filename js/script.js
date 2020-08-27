@@ -75,12 +75,13 @@ If no results are returned a message will be displayed to let the user know & no
 
 function search() {
   const studentNames = document.querySelectorAll("h3");
-  const header = document.querySelector("h2");
+  const header = document.querySelector(".page-header");
   const form = document.createElement("form");
   const input = document.createElement("input");
   const button = document.createElement("button");
   header.appendChild(form);
   form.appendChild(input);
+  form.className = "student-search"
   form.appendChild(button);
 
   input.placeholder = "Search Name";
